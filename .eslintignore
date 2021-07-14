@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+globalConfig.json
+.build
+.scannerwork
+test-report.xml
+.env
+*.log

@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongo:
+    container_name: mongodb-dev-visits-sync
+    image: mongo:3
+    restart: always
+    volumes: 
+      - ./database:/data/db
+    ports:
+      - "27017:27017"
+  api:
+    container_name: api-dev-visits-sync
+    image: node:14.16.0-alpine
+    working_dir: /usr/src/visits-sync
+    restart: always
+    environment:
+      
+    command: 
+      npm run debug
+    volumes:
+      - ./dist/:/usr/src/visits-sync/dist
+      - ./package.json:/usr/src/visits-sync/package.json
+    ports:
+      - 5050:5050
+      - 9292:9292
+    links:
+      - mongo
